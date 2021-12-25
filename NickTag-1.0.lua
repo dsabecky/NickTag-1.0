@@ -356,6 +356,24 @@ end
 				NickTag:SyncSiblings()
 			end
 			NickTag:SendCommMessage ("NickTag", NickTag:Serialize (CONST_COMM_FULLPERSONA, 0, NickTag:GetNicknameTable (UnitName ("player")), minor), "GUILD")
+		--> broadcast to lfd group
+		elseif (InInGroup(LE_PARTY_CATEGORY_INSTANCE)) then
+			if (isMaster) then
+				NickTag:SyncSiblings()
+			end
+			NickTag:SendCommMessage ("NickTag", NickTag:Serialize (CONST_COMM_FULLPERSONA, 0, NickTag:GetNicknameTable (UnitName ("player")), minor), "INSTANCE_CHAT")
+		--> broadcast to raid
+		elseif (IsInRaid()) then
+			if (isMaster) then
+				NickTag:SyncSiblings()
+			end
+			NickTag:SendCommMessage ("NickTag", NickTag:Serialize (CONST_COMM_FULLPERSONA, 0, NickTag:GetNicknameTable (UnitName ("player")), minor), "RAID")
+		--> broadcast to party
+		elseif (IsInGroup()) then
+			if (isMaster) then
+				NickTag:SyncSiblings()
+			end
+			NickTag:SendCommMessage ("NickTag", NickTag:Serialize (CONST_COMM_FULLPERSONA, 0, NickTag:GetNicknameTable (UnitName ("player")), minor), "PARTY")
 		end
 
 	end
